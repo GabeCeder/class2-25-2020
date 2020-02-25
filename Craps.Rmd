@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-```{r}
+```{r, echo = FALSE}
 roll_one_die <- function(x)
   sample(x = 1:6, size = 1)
 
@@ -18,17 +18,28 @@ roll_one_die()
 
 ```
 
-```{r}
+```{r, echo = FALSE}
 roll_two_dice <- function(n = 2) {
   sum(sample(1:6, n, replace = TRUE))}
 
 roll_two_dice()
 
-map_int(1:1000, ~ roll_two_dice())
+results <- 
+
+x <- tibble(
+  throws = map_int(1:1000, ~ roll_two_dice()))
+
+x
+
+
+```
+
+```{r, echo = FALSE, message = FALSE}
+ggplot(x, aes(throws)) + geom_histogram()
 ```
 
 
-```{r}
+```{r, echo = FALSE}
 roll_dice <- function(n = 10) {
   map_int(rep(2, n), roll_two_dice)}
 
@@ -39,7 +50,7 @@ roll_dice()
 ```
 
 
-```{r}
+```{r, echo = FALSE}
 add_dice <- function(n = 2) {
   sum(sample(1:6, n, replace = TRUE))}
 
@@ -47,15 +58,11 @@ add_dice()
 
 ```
 
-```{r}
+```{r, echo = FALSE}
 roll_ten_dice <- function(n = 10) {
   sample(1:6, n, replace = TRUE)}
 
 roll_ten_dice()
 ```
 
-
-```{r}
-
-```
 
